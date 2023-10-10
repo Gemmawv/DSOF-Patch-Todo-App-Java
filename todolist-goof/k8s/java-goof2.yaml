@@ -18,6 +18,8 @@ spec:
     spec:
       containers:
       - image: ${DOCKER_ACCOUNT}/java-goof:latest
+          securityContext:
+            allowPrivilegeEscalation: false
         imagePullPolicy: Always
         name: java-goof
         securityContext:
