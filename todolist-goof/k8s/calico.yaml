@@ -4063,7 +4063,7 @@ spec:
     spec:
       nodeSelector:
         kubernetes.io/os: linux
-      hostNetwork: true
+      hostNetwork: false
       tolerations:
         # Make sure calico-node gets scheduled on all nodes.
         - effect: NoSchedule
@@ -4106,7 +4106,9 @@ spec:
             - mountPath: /host/opt/cni/bin
               name: cni-bin-dir
           securityContext:
+            allowPrivilegeEscalation: false
             privileged: false
+            runAsNonRoot: true
         # This container installs the CNI binaries
         # and CNI network config file on each node.
         - name: install-cni
@@ -4388,6 +4390,9 @@ spec:
               value: node
             - name: DATASTORE_TYPE
               value: kubernetes
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
           livenessProbe:
             exec:
               command:
