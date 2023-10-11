@@ -4109,6 +4109,8 @@ spec:
             allowPrivilegeEscalation: false
             privileged: false
             runAsNonRoot: true
+            capabilities:
+              drop: ALL
         # This container installs the CNI binaries
         # and CNI network config file on each node.
         - name: install-cni
@@ -4236,6 +4238,8 @@ spec:
               value: "true"
           securityContext:
             privileged: false
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
           resources:
             requests:
               cpu: 250m
