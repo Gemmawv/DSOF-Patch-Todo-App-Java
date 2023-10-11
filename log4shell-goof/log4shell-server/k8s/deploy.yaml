@@ -25,6 +25,13 @@ spec:
         - name: ldap
           image: ${DOCKER_ACCOUNT}/log4shell-server:latest
           imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            runAsUser: 10000
+            capabilities:
+              drop: ALL
 ---
 apiVersion: v1
 kind: Service
