@@ -20,6 +20,9 @@ spec:
       - image: ${DOCKER_ACCOUNT}/java-goof:latest
           securityContext:
             allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ALL
         imagePullPolicy: Always
         name: java-goof
         securityContext:
